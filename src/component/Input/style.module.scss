@@ -1,0 +1,68 @@
+@import "../../common.module.scss";
+
+$horizonPadding: 10px;
+$iconFontSize: 26px;
+$leftPaddingBase: $horizonPadding * 2 + $iconFontSize;
+
+.form-input {
+    position: relative;
+    display: inline-flex;
+    align-items: center;  
+    background-color: #fff;
+    &__icon {
+        position: absolute;
+        color: $lightGrey;
+        left: 10px;
+        font-size: $iconFontSize;
+        line-height: $iconFontSize;
+    }
+    &__input {
+        border: 1px solid $lightGrey;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 16px $horizonPadding;
+        padding-left: $leftPaddingBase;
+        width: 100%;
+        outline: none;
+        background-color: transparent;
+        z-index: 10;
+        &::placeholder {
+            transform: translateX(9999px)
+        }
+        &:focus,
+        &:not(:placeholder-shown) {
+            border-color: $darkBlue;
+            box-shadow: 0 0 0 .5px $darkBlue;
+            & + .form-input__placeholder {
+                font-size: 10px;
+                color: #fff;
+                border-radius: 4px;
+                padding: 3px 7px;
+                z-index: 11;
+                background-color: $darkBlue;
+                transform: translate(-34px, -26px);
+                transition: transform .1s ease-in, background-color .1s ease-out;
+            }
+            &:invalid {
+                border-color: $fatalRed;
+                box-shadow: 0 0 0 .5px $fatalRed;
+                & + .form-input__placeholder {
+                    background-color: $fatalRed;
+                }
+            }
+        }
+    }
+    &__placeholder {
+        position: absolute;
+        left: $leftPaddingBase;
+        margin: auto 0;
+        color: $lightGrey;
+        z-index: 0;
+        transition: transform .1s ease-out, background-color .1s ease-out;
+    }
+    &__right-block {
+        position: absolute !important;
+        right: $horizonPadding;
+        z-index: 11;
+    }
+}

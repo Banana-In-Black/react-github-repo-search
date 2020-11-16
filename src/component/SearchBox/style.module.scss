@@ -1,0 +1,15 @@
+@import "../../common.module.scss";
+
+.search-box {
+    position: sticky;
+    top: 0;
+    padding-top: 40px;
+    background-color: #fff;
+    border-bottom: 1.5px solid $darkBlue;
+    &__message {
+        &--error {
+            margin: 0.2em 0;
+            color: $fatalRed;
+        }
+    }
+}

@@ -5,7 +5,9 @@ const RepoList = ({ repos = [] }) => {
         <ul className={styles['repo-list']}>
             {repos.map(repo =>
                 <li className={styles['repo-list__item']} key={repo.id}>
-                    {repo.full_name}
+                    <a href={repo.html_url} rel="noreferrer" target="_blank">
+                        {repo.full_name}
+                    </a>
                 </li>
             )}
         </ul>

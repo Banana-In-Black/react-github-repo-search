@@ -3,13 +3,30 @@
 .search-box {
     position: sticky;
     top: 0;
-    padding-top: 40px;
+    padding: 20px 60px 0;
     background-color: #fff;
-    border-bottom: 1.5px solid $darkBlue;
+    &__text {
+        &--description {
+            font-size: 12px;
+            margin-bottom: 1.2em;
+            color: #878787;
+        }
+    }
+    &__input {
+        &--search {
+            min-width: 200px;
+            width: 70%;
+            max-width: 500px;
+        }
+    }
     &__message {
         &--error {
             margin: 0.2em 0;
             color: $fatalRed;
         }
+    }
+    &__divider {
+        border: 0;
+        border-bottom: 1.5px solid $darkBlue;
     }
 }

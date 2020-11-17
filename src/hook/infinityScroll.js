@@ -7,7 +7,6 @@ const CHECKING_INTERVAL = 300;
 const loadMoreIfBottomIsClose = throttle(callback => {
     const pixelsFromBottom =
         document.body.clientHeight - window.scrollY - document.documentElement.clientHeight;
-    console.log('checking...', { pixelsFromBottom });
     if (pixelsFromBottom < LOADING_DISTANCE){
         callback();
     }

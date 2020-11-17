@@ -31,6 +31,7 @@ export const searchRepoBy = async (q, clear) => {
                 : res.data.items,
             finished: res.data.incomplete_results
         });
+        console.log('Search Result:', { data: res.data });
         return current.items;
     }
 };

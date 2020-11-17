@@ -15,6 +15,9 @@ const SearchBox = forwardRef(({ isSearching, search, onSearchSuccess, onSearchFa
 
     return (
         <section className={styles['search-box']}>
+            <div className={styles['search-box__text--description']}>
+                For unauthenticated requests, the rate limit allows you to make up to 10 requests per minute.
+            </div>
             <TextInput
                     ref={ref}
                     className={styles['search-box__input--search']}
@@ -23,6 +26,7 @@ const SearchBox = forwardRef(({ isSearching, search, onSearchSuccess, onSearchFa
                     onChange={onSearch}
                 />
             <div className={styles['search-box__message--error']}>{searchErrorMsg || nbsp}</div>
+            <hr className={styles['search-box__divider']} />
         </section>
     );
 });

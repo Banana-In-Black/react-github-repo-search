@@ -20,8 +20,6 @@ const search = (keyword, handlePromise, clear) => {
     searchQueue = searchQueue.then(() => handlePromise(promise));
 };
 
-// [Note]: For unauthenticated requests,
-// the rate limit allows you to make up to 10 requests per minute.
 const INPUT_DELAY = 500;
 const debouncedSearch = debounce(search, INPUT_DELAY);
 

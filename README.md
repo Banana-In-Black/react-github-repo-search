@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# React Github Repository Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Initial by [Create-React-App](https://github.com/facebook/create-react-app), and [Demo](https://codesandbox.io/s/react-github-repo-search-92lie) host on CodeSandbox.
+Or you can download it from [github](https://github.com/facebook/create-react-app) and use `npm i && npm start` to run it on the local dev server.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Search repos by input on changing, with debounced api call.
+- Implement simple infinity scroll to load more repos if there's more result than first page.
 
-### `npm start`
+## API Reference
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Github Search API v3](https://docs.github.com/en/free-pro-team@latest/rest/reference/search)
+- [@octokit/core](https://github.com/octokit/core.js#readme)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project Architecture
 
-### `npm test`
+- `/component`: Reusable react components, most of them are uncontrolled.
+  - `/Input`: Base text input with some fancy visual effect.
+  - `/LoadingIcon`: A pure CSS animation loading icon. (from [loading.io](https://loading.io/css/))
+  - `/SearchBox`: Every UI that search needed is put together here.
+  - `/RepoList`: Ugh.. github repository list, the search result will be display here.
+- `/api`: Use `@octokit/core` to send search request to github. Since the feature is not complex, so I put searching state here instead of using `redux` or `Context`.
+- `/hook`: Two features, two hooks.
+  - `/infinityScroll`: Currently it calculate the `document.body` scroll info to determine whether to execute the given callback or not. With throttled scroll event handler.
+  - `/search`: Handle debounced search and loading state.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## CSS (SCSS)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Using `BEM` as a naming convention, and to avoid complex or nested css rules. Futhermore, use `SCSS` to make it easier to write BEM classnames.

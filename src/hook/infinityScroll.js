@@ -4,7 +4,7 @@ import { partial, throttle } from 'lodash-es';
 const LOADING_DISTANCE = 200; // px
 const CHECKING_INTERVAL = 300;
 
-const loadMoreIfBottomIsClose = throttle(callback => {
+const runCallbackIfBottomIsClose = throttle(callback => {
     const pixelsFromBottom =
         document.body.clientHeight - window.scrollY - document.documentElement.clientHeight;
     if (pixelsFromBottom < LOADING_DISTANCE){
@@ -14,7 +14,7 @@ const loadMoreIfBottomIsClose = throttle(callback => {
 
 export default function useInfinityScroll(callback) {
     useEffect(() => {
-        const onScroll = partial(loadMoreIfBottomIsClose, callback);
+        const onScroll = partial(runCallbackIfBottomIsClose, callback);
         window.addEventListener('scroll', onScroll);
         return () => {
             window.removeEventListener('scroll', onScroll);
